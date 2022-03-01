@@ -1,0 +1,48 @@
+{% extends 'template.html' %}
+{% load static %}
+
+{% block title %}Cadastro{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'authentication/css/signup.css' %}">
+{% endblock %}
+
+{% block body %}
+
+<div class="container-fluid">
+    <div class="p-4" id="signup-area">
+        <form method="POST" action="{% url 'signup' %}">
+            {% csrf_token %}
+            <div class="text-center mb-3">CADASTRO</div>
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="mb-3 alert {{ message.tags }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <label class="form-label" for="username_signup">Usuário</label>
+            <input type="text" class="form-control mb-3" name="username" id="username_signup" placeholder="Digite seu usuário">
+            <label class="form-label" for="email_signup">E-mail</label>
+            <input type="email" class="form-control mb-3" name="email" id="email_signup" placeholder="Digite seu e-mail">
+
+            <label class="form-label" for="first_name_signup">Nome</label>
+            <input type="text" class="form-control mb-3" name="first_name" id="first_name_signup" placeholder="Digite seu nome">
+            <label class="form-label" for="last_name_signup">Sobrenome</label>
+            <input type="text" class="form-control mb-3" name="last_name" id="last_name_signup" placeholder="Digite seu sobrenome">
+
+            <label class="form-label" for="password_signup">Senha</label>
+            <input type="password" class="form-control mb-3" name="password" id="password_signup" placeholder="Digite sua senha">
+            <label class="form-label" for="password_confirm_signup">Confirmação de senha</label>
+            <input type="password" class="form-control mb-3" name="password_confirm" id="password_confirm_signup" placeholder="Confirme sua senha">
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-dark">Cadastrar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
