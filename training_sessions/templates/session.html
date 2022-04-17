@@ -1,0 +1,20 @@
+{% extends 'template.html' %}
+{% load static %}
+
+{% block title %}Aulas{% endblock %}
+
+{% block head %}{% endblock %}
+
+{% block body %}
+
+<h1>Aula {{ training_session.id }}</h1>
+
+{% for coach in training_session.coach.all %}
+    <h2>{{ coach.first_name }} {{ coach.last_name }}</h2>
+{% endfor %}
+
+{% for athlete in training_session.athletes.all %}
+    <p>{{ athlete.first_name }} {{ athlete.last_name }}</p>
+{% endfor %}
+
+{% endblock %}
